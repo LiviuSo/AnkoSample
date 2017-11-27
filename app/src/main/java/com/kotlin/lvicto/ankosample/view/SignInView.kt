@@ -22,11 +22,13 @@ class SignInView : AnkoComponent<SignInActivity> {
             val username = editText {
                 id = R.id.usernameEditText
                 hintResource = R.string.sign_in_username
+                setText("winter")// todo remove
             }.lparams(width = matchParent, height = wrapContent)
 
             val password = editText {
                 id = R.id.usernamePassword
                 hintResource = R.string.sign_in_password
+                setText("frost") // todo remove
             }.lparams(width = matchParent, height = wrapContent)
 
             button {
@@ -37,6 +39,7 @@ class SignInView : AnkoComponent<SignInActivity> {
                     handleOnSignInButtonPressed(ui, username.text.toString(), password.text.toString())
                 }
             }.lparams(width = matchParent, height = wrapContent)
+
         }.applyRecursively { view ->
             when (view) {
                 is EditText -> view.textSize = 22f

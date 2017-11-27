@@ -8,5 +8,5 @@
     <string name="dialog_button_close">Close</string>
     <string name="sign_in_access_denied_title">Sign In Failed</string>
     <string name="sign_in_access_denied_message">Invalid username or password</string>
-    <string name="logged_in_message">Logged In!</string>
+    <string name="logged_in_message">Details</string>
 </resources>
