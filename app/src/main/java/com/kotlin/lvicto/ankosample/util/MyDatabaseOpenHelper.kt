@@ -1,4 +1,4 @@
-package com.kotlin.lvicto.ankosample.dao
+package com.kotlin.lvicto.ankosample.util
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

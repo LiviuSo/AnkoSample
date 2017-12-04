@@ -3,13 +3,15 @@ package com.kotlin.lvicto.ankosample.dao
 import android.content.ContentValues
 import android.content.Context
 import android.util.Log
-import com.kotlin.lvicto.ankosample.dao.MyDatabaseOpenHelper.Companion.COL_COUNTRY
-import com.kotlin.lvicto.ankosample.dao.MyDatabaseOpenHelper.Companion.COL_NAME
-import com.kotlin.lvicto.ankosample.dao.MyDatabaseOpenHelper.Companion.COL_RATINGS
-import com.kotlin.lvicto.ankosample.dao.MyDatabaseOpenHelper.Companion.COL_STATE
-import com.kotlin.lvicto.ankosample.dao.MyDatabaseOpenHelper.Companion.TABLE_NAME
 import com.kotlin.lvicto.ankosample.model.WinterResort
+import com.kotlin.lvicto.ankosample.util.MyDatabaseOpenHelper
+import com.kotlin.lvicto.ankosample.util.MyDatabaseOpenHelper.Companion.COL_COUNTRY
+import com.kotlin.lvicto.ankosample.util.MyDatabaseOpenHelper.Companion.COL_NAME
+import com.kotlin.lvicto.ankosample.util.MyDatabaseOpenHelper.Companion.COL_RATINGS
+import com.kotlin.lvicto.ankosample.util.MyDatabaseOpenHelper.Companion.COL_STATE
+import com.kotlin.lvicto.ankosample.util.MyDatabaseOpenHelper.Companion.TABLE_NAME
 import com.kotlin.lvicto.ankosample.util.PreferenceHelper
+import com.kotlin.lvicto.ankosample.util.database
 import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.StringParser
 import org.jetbrains.anko.db.parseList
@@ -48,6 +50,7 @@ class ResortsDao(private val context: Context) {
 
             // build the query
             val sqb = select(TABLE_NAME)
+
             if(hasCountryArg) {
                 selection += "$COL_COUNTRY = {country}"
                 args.add("country" to country.toString())
@@ -86,11 +89,14 @@ class ResortsDao(private val context: Context) {
         return results
     }
 
-    fun getStringValues(column: String): List<String> {
+    fun getStringValues(column: String, value: String?): List<String> {
         val values = arrayListOf<String>()
 
         context.database.use {
             val sqb = select(TABLE_NAME, column).distinct()
+            if(value != null) {
+                sqb.whereSimple(column, value)
+            }
             values.addAll(sqb.exec {
                 parseList(StringParser)
             })

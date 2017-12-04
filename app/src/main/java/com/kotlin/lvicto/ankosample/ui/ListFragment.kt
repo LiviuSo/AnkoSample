@@ -1,4 +1,4 @@
-package com.kotlin.lvicto.ankosample.view
+package com.kotlin.lvicto.ankosample.ui
 
 import android.app.Fragment
 import android.graphics.Color
@@ -11,9 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.kotlin.lvicto.ankosample.R
-import com.kotlin.lvicto.ankosample.dao.MyDatabaseOpenHelper
 import com.kotlin.lvicto.ankosample.dao.ResortsDao
 import com.kotlin.lvicto.ankosample.presenter.DefaultListPresenter
+import com.kotlin.lvicto.ankosample.util.MyDatabaseOpenHelper
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
@@ -30,7 +30,6 @@ class ListFragment : Fragment() {
     private lateinit var list: List<String>
     private lateinit var spinnerCountryValues: ArrayList<String>
     private lateinit var spinnerStateValues: ArrayList<String>
-
     private lateinit var mPresenter: DefaultListPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,6 +71,7 @@ class ListFragment : Fragment() {
                         }
                         spinnerStates = spinner { // states
                             Log.d("ListFragment", "spinnerStates -> onItemSelected")
+
                             lparams(0, wrapContent) {
                                 weight = 1.0f
                             }
@@ -165,9 +165,11 @@ class ListFragment : Fragment() {
             null
         } else {
             val parts = (spinnerRatings.selectedItem as String).split("-")
-            val min = parts[0].toInt()
-            val max = parts[1].toInt()
-            Pair(min, max)
+            if(parts.size == 2) {
+                Pair(parts[0].toInt(), parts[1].toInt())
+            } else { // expected 200+
+                Pair(parts[0].substring(0, parts[0].length - 1).toInt(), 99999) // infinity
+            }
         }
         values.add(country)
         values.add(state)
@@ -175,9 +177,9 @@ class ListFragment : Fragment() {
         return values
     }
 
-    private fun getSpinnerValues(column: String): ArrayList<String> {
+    private fun getSpinnerValues(column: String, value: String? = null): ArrayList<String> {
         val values: ArrayList<String> = arrayListOf()
-        values.addAll(ResortsDao(activity).getStringValues(column))
+        values.addAll(ResortsDao(activity).getStringValues(column, value))
         values.sort()
         val noValue = when (column) {
             MyDatabaseOpenHelper.COL_COUNTRY -> noCountryValue

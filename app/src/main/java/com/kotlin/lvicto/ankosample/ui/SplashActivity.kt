@@ -1,4 +1,4 @@
-package com.kotlin.lvicto.ankosample.view
+package com.kotlin.lvicto.ankosample.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

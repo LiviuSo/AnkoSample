@@ -1,4 +1,4 @@
-package com.kotlin.lvicto.ankosample.view
+package com.kotlin.lvicto.ankosample.ui
 
 import android.support.annotation.StringRes
 import android.support.v4.content.ContextCompat

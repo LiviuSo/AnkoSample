@@ -25,7 +25,7 @@ object WinterResortsList {
                     WinterResort("Hidden Valey", "Ontario", "CAN", 2),
                     WinterResort("Keystone", "Colorado", "USA", 121),
                     WinterResort("Killington Resort", "Vermont", "USA", 176),
-                    WinterResort("Le Massif", "Quebec", "CAN", 21),
+                    WinterResort("Le Massif", "Quebec", "CAN", 211),
                     WinterResort("Mad River Mountain", "Ohio", "USA", 71))
 
     fun getResortsString(): List<String> {

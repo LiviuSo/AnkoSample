@@ -5,10 +5,10 @@ import com.kotlin.lvicto.ankosample.dao.ResortsDao
 
 class DefaultListPresenter(private val context: Context) : ResortsListPresenter {
 
-    override fun getList(params: ArrayList<Any?>): List<String> {
-        val country = params[0] as String?
-        val state = params[1]  as String?
-        val ratings = params[2] as Pair<Int, Int>?
+    override fun getList(queryParams: ArrayList<Any?>): List<String> {
+        val country = queryParams[0] as String?
+        val state = queryParams[1]  as String?
+        val ratings = queryParams[2] as Pair<Int, Int>?
         return ResortsDao(context).query(country, state, ratings).map { it.toString() }
     }
 }

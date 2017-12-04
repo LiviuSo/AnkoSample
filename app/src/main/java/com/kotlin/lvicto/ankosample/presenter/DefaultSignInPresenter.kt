@@ -2,8 +2,8 @@ package com.kotlin.lvicto.ankosample.presenter
 
 import android.content.Context
 import com.kotlin.lvicto.ankosample.model.AuthCredentials
-import com.kotlin.lvicto.ankosample.view.SignInActivity
-import com.kotlin.lvicto.ankosample.view.SignInView
+import com.kotlin.lvicto.ankosample.ui.SignInActivity
+import com.kotlin.lvicto.ankosample.ui.SignInView
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 

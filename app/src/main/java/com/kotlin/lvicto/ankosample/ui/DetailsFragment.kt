@@ -1,4 +1,4 @@
-package com.kotlin.lvicto.ankosample.view
+package com.kotlin.lvicto.ankosample.ui
 
 import android.app.Fragment
 import android.graphics.Color
