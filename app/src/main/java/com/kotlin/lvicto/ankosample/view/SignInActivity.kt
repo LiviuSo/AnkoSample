@@ -16,6 +16,7 @@ class SignInActivity : AppCompatActivity() {
         mView = SignInView()
         mView.setContentView(this)
         mPresenter = DefaultSignInPresenter(this, mView = mView)
+
     }
 
     fun authorizeUser(username: String, password: String) {
